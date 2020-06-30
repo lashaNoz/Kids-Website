@@ -1,0 +1,344 @@
+.menu {
+  width: 5rem;
+  height: 4rem;
+  position: fixed;
+  top: 5rem;
+  right: 6rem;
+  cursor: pointer;
+  @include flexLayout(space-between, flex-end);
+  flex-direction: column;
+  z-index: 1000;
+  overflow: hidden;
+
+  @include response(xs) {
+    top: 2rem;
+    right: 3rem;
+  }
+
+  &-line {
+    width: 100%;
+    height: 0.8rem;
+    background-color: $color-white;
+    border: 0.2rem solid rgba(214, 65, 97, 0.7);
+    border-radius: 0.3rem;
+    position: relative;
+    left: 0;
+    transition: left 0.3s 0.3s, transform 0.3s;
+  }
+
+  &-line-2 {
+    width: 3.5rem;
+    transition: left 0.3s 0.3s;
+  }
+}
+
+.change {
+  .menu-line-1 {
+    left: -100%;
+    transform: rotate(40deg) translate(4rem, -3.5rem);
+    transform-origin: left bottom;
+    transition: left 0.3s, transform 0.3s 0.3s;
+  }
+
+  .menu-line-2 {
+    left: 100%;
+    transition: left 0.3s;
+  }
+
+  .menu-line-3 {
+    left: -100%;
+    transform: rotate(-40deg) translate(4rem, 3.5rem);
+    transform-origin: left top;
+    transition: left 0.3s, transform 0.3s 0.3s;
+  }
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10rem;
+
+  a {
+    font-size: 4rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: $color-dark;
+    margin: 1.5rem 0;
+
+    @include response(xs) {
+      font-size: 3rem;
+    }
+  }
+}
+
+.social-media {
+  height: 30%;
+  margin-right: 10rem;
+  @include flexLayout();
+  flex-direction: column;
+  position: relative;
+
+  a {
+    $social-media-colors: (
+      1: #ff0000,
+      2: #1da1f2,
+      3: #3b5998,
+      4: #4c5fd7,
+    );
+
+    @for $i from 1 through 4 {
+      &:nth-child(#{$i}) i {
+        background-color: map-get($social-media-colors, $i);
+      }
+    }
+
+    font-size: 2rem;
+    margin: 1rem 0;
+
+    i {
+      font-size: 3rem;
+      color: $color-white;
+      width: 5rem;
+      height: 5rem;
+      @include flexLayout();
+      border-radius: 0.5rem;
+    }
+  }
+}
+
+.copyright-text {
+  position: absolute;
+  bottom: 3rem;
+  width: 100%;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.section-1-heading {
+  font-size: 30rem;
+  text-transform: uppercase;
+  letter-spacing: 6rem;
+
+  @include response(xl) {
+    font-size: 25rem;
+  }
+
+  @include response(lg) {
+    font-size: 20rem;
+  }
+
+  @include response(md) {
+    font-size: 15rem;
+  }
+
+  @include response(sm) {
+    font-size: 10rem;
+  }
+
+  @include response(xs) {
+    font-size: 7rem;
+  }
+
+  span {
+    color: $color-white;
+    font-weight: 600;
+    opacity: 0.8;
+    position: relative;
+    display: inline-block;
+
+    &:nth-child(odd) {
+      transform: rotateZ(20deg);
+      border-bottom: 0.5rem solid $color-red;
+    }
+
+    &:nth-child(even) {
+      transform: rotateZ(-20deg);
+      border-bottom: 0.5rem solid $color-orange;
+    }
+
+    &::before {
+      @extend %before-after;
+      transform: translate(-0.5rem, -0.5rem);
+    }
+
+    &:hover::before {
+      transform: translate(-1rem, -1rem);
+    }
+
+    &:nth-child(odd)::before {
+      color: $color-orange;
+    }
+
+    &:nth-child(even)::before {
+      color: $color-red;
+    }
+
+    &::after {
+      @extend %before-after;
+      transform: translate(0.5rem, 0.5rem);
+      z-index: -1;
+    }
+
+    &:hover::after {
+      transform: translate(1rem, 1rem);
+    }
+
+    &:nth-child(odd)::after {
+      color: $color-red;
+    }
+
+    &:nth-child(even)::after {
+      color: $color-orange;
+    }
+  }
+}
+
+.section-heading {
+  font-size: 9rem;
+  font-weight: 700;
+  color: $color-orange;
+  text-transform: capitalize;
+  letter-spacing: 0.5rem;
+  margin: 5rem 0 10rem 0;
+
+  @include response(md) {
+    font-size: 7rem;
+  }
+
+  @include response(sm) {
+    text-align: center;
+  }
+}
+
+.card {
+  height: 40rem;
+  width: 30rem;
+  background-color: $color-orange;
+  @include flexLayout(space-around);
+  flex-direction: column;
+  box-shadow: 0.5rem 0.5rem 0 $color-white;
+  position: relative;
+
+  @include response(lg) {
+    margin: 5rem 0;
+  }
+
+  &-heading {
+    font-size: 3rem;
+    color: $color-white;
+    text-transform: uppercase;
+    letter-spacing: 0.3rem;
+  }
+
+  &-img {
+    width: 25rem;
+  }
+
+  &-btn {
+    @include flexLayout();
+    flex-direction: column;
+    position: absolute;
+    left: -2.5rem;
+    padding: 1rem 0;
+    background-color: $color-white;
+    width: 2.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: 0.2rem solid $color-orange;
+    border-right: none;
+    border-radius: 0.5rem 0 0 0.5rem;
+    cursor: pointer;
+
+    span {
+      color: $color-red;
+    }
+  }
+
+  .circle {
+    width: 8rem;
+    height: 8rem;
+    background-color: transparentize($color-white, 0.3);
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 0.3rem solid $color-cyan;
+    transition: all 0.5s 0.2s;
+
+    &-content {
+      width: 100%;
+      height: 100%;
+      @include flexLayout(space-evenly);
+      flex-direction: column;
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    &-heading {
+      color: $color-red;
+      font-size: 1.8rem;
+    }
+
+    &-paragraph {
+      font-size: 1.8rem;
+      color: $color-grey;
+      padding: 2rem;
+    }
+
+    &-btn {
+      font-size: 1.4rem;
+      letter-spacing: 0.1rem;
+      padding: 0.5rem 1rem;
+      color: $color-red;
+      border: 0.2rem solid $color-cyan;
+    }
+  }
+}
+
+.change.card .circle {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  background-color: transparentize($color-white, 0.1);
+}
+
+.change .circle-content {
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.5s 0.7s;
+}
+
+.advice {
+  width: 80%;
+  margin: 5rem 0;
+  font-size: 5rem;
+  color: $color-grey;
+
+  @include response(xl) {
+    font-size: 4rem;
+  }
+
+  @include response(lg) {
+    font-size: 3.5rem;
+  }
+}
+
+.gallery {
+  width: 80%;
+  @include flexLayout(space-between);
+  flex-wrap: wrap;
+
+  &-link {
+    margin: 1rem;
+
+    img {
+      height: 20rem;
+      padding: 0.3rem;
+      border: 0.3rem solid $color-orange;
+    }
+  }
+
+  @include response(md) {
+    @include flexLayout();
+  }
+}

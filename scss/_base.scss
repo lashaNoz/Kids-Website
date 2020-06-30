@@ -1,0 +1,71 @@
+$color-cyan: #00ffff;
+$color-orange: #ff9100;
+$color-red: #d64161;
+$color-green: #47bb60;
+$color-white: #fff;
+$color-dark: #333;
+$color-grey: #555;
+
+@mixin flexLayout($justify: center, $align: center) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+%before-after {
+  content: attr(data-letter);
+  position: absolute;
+  left: 0;
+  transition: transform 0.5s;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style-type: none;
+  outline: none;
+  font-family: "DM Mono", monospace;
+  font-weight: 400;
+}
+
+@mixin response($breakpoint) {
+  @if ($breakpoint == xl) {
+    @media (max-width: 1500px) {
+      @content;
+    }
+  }
+
+  @if ($breakpoint == lg) {
+    @media (max-width: 1200px) {
+      @content;
+    }
+  }
+
+  @if ($breakpoint == md) {
+    @media (max-width: 900px) {
+      @content;
+    }
+  }
+
+  @if ($breakpoint == sm) {
+    @media (max-width: 660px) {
+      @content;
+    }
+  }
+
+  @if ($breakpoint == xs) {
+    @media (max-width: 500px) {
+      @content;
+    }
+  }
+}
+
+html {
+  font-size: 62.5%;
+
+  @include response(xs) {
+    font-size: 45%;
+  }
+}
